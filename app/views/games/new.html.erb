@@ -1,0 +1,22 @@
+<%# <form action="">
+  <label for="letters">Number of letters:</label>
+  <input type="number" id="letters" name="letters" min="10" max="100">
+</form> %>
+
+<div class="container">
+<h1>Longest Word Rails Game</h1>
+<p>What's the longest word you can make up with these letters?</p>
+<br>
+  <div class="letters-list">
+    <% @letters.each do |letter| %>
+      <div class='card'><%= letter %></div>
+    <% end %>
+  </div>
+  <div class="spacer"></div>
+  <form action="/score" method="get">
+    <input type="text" name="attempt" placeholder="Write a big word!">
+    <input type="hidden" name="grid" value=<%=@letters.join("")%>>
+    <%= hidden_field_tag 'start_time', Time.new() %>
+    <button type="submit">Submit</button>    
+  </form>
+</div>
